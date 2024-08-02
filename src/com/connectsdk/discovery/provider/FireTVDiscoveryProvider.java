@@ -22,6 +22,8 @@ package com.connectsdk.discovery.provider;
 
 import android.content.Context;
 
+import androidx.annotation.Keep;
+
 import com.amazon.whisperplay.fling.media.controller.DiscoveryController;
 import com.amazon.whisperplay.fling.media.controller.RemoteMediaPlayer;
 import com.connectsdk.core.Util;
@@ -46,6 +48,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Using Connect SDK for discovery/control of FireTV devices will result in your app complying with
  * the Fling SDK terms of service.
  */
+@Keep
 public class FireTVDiscoveryProvider implements DiscoveryProvider {
 
     private DiscoveryController discoveryController;
