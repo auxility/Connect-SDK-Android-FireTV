@@ -26,6 +26,7 @@ import androidx.annotation.Keep;
 
 import com.amazon.whisperplay.fling.media.controller.DiscoveryController;
 import com.amazon.whisperplay.fling.media.controller.RemoteMediaPlayer;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.discovery.DiscoveryProvider;
@@ -90,7 +91,14 @@ public class FireTVDiscoveryProvider implements DiscoveryProvider {
     @Override
     public void stop() {
         if (isRunning) {
-            discoveryController.stop();
+            try {
+                discoveryController.stop();
+            } catch (Throwable e) {
+                String message = e.getMessage();
+                if (message != null) {
+                    LoggerManager.Companion.getInstance().log("FireTVDiscoveryProvider, stop, error = " + message);
+                }
+            }
             isRunning = false;
         }
         for (ServiceDescription serviceDescription : foundServices.values()) {
